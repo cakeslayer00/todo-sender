@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: sender
+
+  config:
+    import: file:.env[.properties]
+
+
+mail:
+  host:
+  port:
+  sender:
+  password:
+  protocol:
