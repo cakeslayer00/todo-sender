@@ -5,10 +5,9 @@ spring:
   config:
     import: file:.env[.properties]
 
-
 mail:
-  host:
-  port:
-  sender:
-  password:
-  protocol:
+  host: smtp.gmail.com
+  port: 587
+  sender: ${SENDER}
+  password: ${PASSWORD}
+  protocol: smtp
