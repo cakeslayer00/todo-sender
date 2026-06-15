@@ -20,10 +20,22 @@ spring:
         spring.json.trusted.packages: dev.cake.sender.messaging.event
 
 mail:
-  host: smtp.gmail.com
+  host: in-v3.mailjet.com
   port: 587
-  sender: ${SENDER}
-  password: ${PASSWORD}
+  username: ${MAIL_USERNAME}
+  password: ${MAIL_PASSWORD}
+  from: ${MAIL_FROM}
+  smtp-auth-enabled: true
+  tls-enabled: true
+
+#mail:
+#  host: smtp.gmail.com
+#  port: 587
+#  username: ${MAIL_USERNAME}
+#  password: ${MAIL_PASSWORD}
+#  from: ${MAIL_FROM}
+#  smtp-auth-enabled: true
+#  tls-enabled: true
 
 app:
   kafka:

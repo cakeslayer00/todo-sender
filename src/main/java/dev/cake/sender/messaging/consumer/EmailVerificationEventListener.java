@@ -1,7 +1,7 @@
 package dev.cake.sender.messaging.consumer;
 
 import dev.cake.sender.messaging.event.EmailVerificationRequestedEvent;
-import dev.cake.sender.properties.MailProperties;
+import dev.cake.sender.common.properties.MailProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-public class UserRegisteredListener {
+public class EmailVerificationEventListener {
 
     private final JavaMailSender mailSender;
 
@@ -21,10 +21,10 @@ public class UserRegisteredListener {
 
     @KafkaListener(topics = "auth.email-verification-requested", groupId = "sender")
     public void onUserRegistered(EmailVerificationRequestedEvent event) {
-        log.info("Received UserRegisteredEvent for {}", event.publicId());
+        log.info("Received email verification event for {}", event.publicId());
 
         SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setFrom(mailProperties.sender());
+        msg.setFrom(mailProperties.from());
         msg.setTo(event.email());
         msg.setSubject("Confirmation letter");
         msg.setText("""
