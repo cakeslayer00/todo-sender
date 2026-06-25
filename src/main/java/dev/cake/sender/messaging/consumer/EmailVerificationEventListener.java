@@ -1,6 +1,6 @@
 package dev.cake.sender.messaging.consumer;
 
-import dev.cake.sender.messaging.event.EmailVerificationRequestedEvent;
+import dev.cake.sender.messaging.event.EmailVerificationRequested;
 import dev.cake.sender.common.properties.MailProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +19,8 @@ public class EmailVerificationEventListener {
 
     private final MailProperties mailProperties;
 
-    @KafkaListener(topics = "auth.email-verification-requested", groupId = "sender")
-    public void onUserRegistered(EmailVerificationRequestedEvent event) {
+    @KafkaListener(topics = "auth.email_verification", groupId = "sender")
+    public void onUserRegistered(EmailVerificationRequested event) {
         log.info("Received email verification event for {}", event.publicId());
 
         SimpleMailMessage msg = new SimpleMailMessage();
@@ -42,6 +42,7 @@ public class EmailVerificationEventListener {
         } catch (MailException ex) {
             log.error("Error occured: {}", ex.getMessage());
         }
+
     }
 
 }

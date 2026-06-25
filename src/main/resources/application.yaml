@@ -16,7 +16,7 @@ spring:
         spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
         spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
         spring.json.use.type.headers: false
-        spring.json.value.default.type: dev.cake.sender.messaging.event.EmailVerificationRequestedEvent
+        spring.json.value.default.type: dev.cake.sender.messaging.event.EmailVerificationRequested
         spring.json.trusted.packages: dev.cake.sender.messaging.event
 
 mail:
@@ -41,7 +41,7 @@ app:
   kafka:
     topics:
       email-verification-requested:
-        name: auth.email-verification-requested
+        name: auth.email_verification
         replicas: 1
 
 server:
